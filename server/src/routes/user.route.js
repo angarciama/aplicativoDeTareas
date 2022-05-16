@@ -1,11 +1,11 @@
 const express = require('express');
 const router =express.Router();
+const userCtrl = require('../controllers/user.controller')
+const middleware1 = require('../middlewares/middleware1')
 
-const usuario = {
-    nombre: 'Prueba',
-    apellido: 'Prueba2'
-}
+router.get('/', [middleware1], userCtrl.getAllUsers)
+    .post('/', userCtrl.createUser)
+    .put('/', userCtrl.updateUser)
+    .delete('/', userCtrl.deleteUser);
 
-router.get('/', (req,res) => {
-    res.json(usuario)
-});
+module.exports = router;
