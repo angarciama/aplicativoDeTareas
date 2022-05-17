@@ -1,7 +1,10 @@
+const db = require('../database/models')
+
 const userCtrl = {}
 
-userCtrl.getAllUsers = (req, res) => {
-    res.json('get to users endpoint')
+userCtrl.getAllUsers = async (req, res) => {
+    const users = await db.User.findAll();
+    res.json(users)
 }
 
 userCtrl.createUser = (req, res) => {
