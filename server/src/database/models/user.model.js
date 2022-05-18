@@ -43,6 +43,14 @@ module.exports = (sequelize, DataTypes) => {
         return await bcrypt.compare(password, this.password);
     }
 
+    //Sobrescribimos "borrando" la contraseña cuando se solicite user (no aparece el campo password)
+    User.prototype.toJSON = function() {
+        var values = Object.assign({}, this.get());
+
+        delete values.password;
+        return values;
+    }
+
     User.associate = (db) => {
         User.hasMany(db.Task);
     }
