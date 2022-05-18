@@ -8,4 +8,6 @@ router.get('/', [middleware1], userCtrl.getAllUsers)
     .put('/', userCtrl.updateUser)
     .delete('/', userCtrl.deleteUser);
 
+router.post('/login', userCtrl.login);
+
 module.exports = router;
