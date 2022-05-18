@@ -1,5 +1,7 @@
 //"const db = require('../database/models')" Como este controlador es de usuarios se destructura
 const { User } = require('../database/models')
+const jwt = require('jsonwebtoken');
+
 
 const userCtrl = {}
 
@@ -25,7 +27,8 @@ userCtrl.login = async (req, res) => {
         }
     });
     if (await user.validPassword(password)) {
-        return res.json('Usuario login OK')
+        const token = jwt.sign({ name: user.name, id: user.id }, 'NocqVerXvLvLtyvquEJF');
+        return res.json(token)
     }else{
         res.json('Usuario/contraseña invalido')
     }
