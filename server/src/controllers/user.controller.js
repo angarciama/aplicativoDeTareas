@@ -24,7 +24,7 @@ userCtrl.login = async (req, res) => {
             email 
         }
     });
-    if (user && user.validPassword(password)) {
+    if (await user.validPassword(password)) {
         return res.json('Usuario login OK')
     }else{
         res.json('Usuario/contraseña invalido')
