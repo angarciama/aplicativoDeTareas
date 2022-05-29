@@ -26,7 +26,7 @@ userCtrl.login = async (req, res) => {
             email 
         }
     });
-    if (await user.validPassword(password)) {
+    if (user && await user.validPassword(password)) {
         const token = jwt.sign({ name: user.name, id: user.id }, 'NocqVerXvLvLtyvquEJF');
         return res.json(token)
     }else{

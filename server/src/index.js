@@ -8,9 +8,14 @@ forceSync = async () => {
     await db.sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
     await db.sequelize.sync({ force: true });
     await db.sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
+    await db.User.create({
+      name: "Prueba",
+      lastName: "Prueba",
+      email: "prueba@gmail.com",
+      password: "12345"
+    })
 }
-
-//forceSync();
+forceSync();
 
 //Para que lo que mandemos en el body llegue al request "app.use(express.json());"
 app.use(express.json());
@@ -20,7 +25,7 @@ app.use(
     jwt({
       secret: "NocqVerXvLvLtyvquEJF",
       algorithms: ["HS256"],
-    }).unless({ path: ["/api/user/login", '/api/user/register'] })
+    }).unless({ path: ["/api/user/login", '/api/user/signup'] })
   );
 
 app.use('/api/user', require('./routes/user.route'))
