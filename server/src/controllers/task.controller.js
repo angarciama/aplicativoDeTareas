@@ -1,4 +1,4 @@
-const { Task } = require('../database/models')
+const { Task, User } = require('../database/models')
 
 taskController = {}
 
@@ -10,5 +10,10 @@ taskController.getAllTasks = async (req, res) => {
     res.json(tasks);
 }
 
+taskController.createTask = async (req, res) => {
+    const { description } = req.body;
+    const task = await Task.create({ description, UserId: req.auth.id });
+    res.json(task)
+}
 
 module.exports = taskController;

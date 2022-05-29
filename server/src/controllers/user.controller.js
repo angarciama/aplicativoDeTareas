@@ -1,5 +1,5 @@
 //"const db = require('../database/models')" Como este controlador es de usuarios se destructura
-const { User } = require('../database/models')
+const { User, Task } = require('../database/models')
 const jwt = require('jsonwebtoken');
 
 
@@ -8,7 +8,10 @@ const userCtrl = {}
 userCtrl.getAllUsers = async (req, res) => {
     //Si no se hubise destructurado "const db = require('../database/models')"
     //const users = await db.User.findAll();
-    const users = await User.findAll();
+    const users = await User.findAll({
+        attributes: ['name', 'lastName', 'email'],
+        include: [{model: Task, attributes: ['description', 'done']}]
+    });
     res.json(users)
 }
 
