@@ -29,5 +29,6 @@ app.use(
   );
 
 app.use('/api/user', require('./routes/user.route'))
+app.use('/api/task', require('./routes/task.route'))
 
 app.listen(3000, () => console.log("Servidor corriendo en el puerto: 3000"));
