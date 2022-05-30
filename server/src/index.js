@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const db = require('./database/models');
 const { expressjwt: jwt } = require('express-jwt');
+const cors = require('cors');
 
 //Para que cree las tablas con npm run start
 forceSync = async () => {
@@ -17,6 +18,8 @@ forceSync = async () => {
 }
 forceSync();
 
+//Unir back con front
+app.use(cors());
 //Para que lo que mandemos en el body llegue al request "app.use(express.json());"
 app.use(express.json());
 
@@ -31,4 +34,4 @@ app.use(
 app.use('/api/user', require('./routes/user.route'))
 app.use('/api/task', require('./routes/task.route'))
 
-app.listen(3000, () => console.log("Servidor corriendo en el puerto: 3000"));
+app.listen(3001, () => console.log("Servidor corriendo en el puerto: 3001"));
