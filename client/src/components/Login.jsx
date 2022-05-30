@@ -1,13 +1,17 @@
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import authService from "../services/auth-services";
 
 function Login(){
     const email = useRef(null);
     const password = useRef(null);
+    const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        authService.login(email.current.value, password.current.value)
+        await authService.login(email.current.value, password.current.value);
+        navigate("/task");
+        window.location.reload();
     }
 
     return(
