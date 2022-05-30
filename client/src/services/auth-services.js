@@ -13,12 +13,16 @@ const login = async (email, password) => {
         }
     } catch (error) {
         console.error(error);
-    }
-    
+    }    
+}
+
+const getCurrentUser = () => {
+    return JSON.parse(localStorage.getItem('user'));
 }
 
 const authService = {
-    login
+    login,
+    getCurrentUser
 }
 
 export default authService
