@@ -1,11 +1,26 @@
+import { useEffect, useState } from "react";
+import taskServices from "../services/task-services";
 import Task from "./task";
-const misTareas = ["tarea1", "tarea2", "tarea3"]
 
 function TaskPage(){
+
+    const [currentTasks, setCurrentTasks] = useState([]);
+
+    useEffect(()=>{
+
+        const getAllTasks = async () => {
+            const tasksData = await taskServices.getAllTasks();
+            if(tasksData.data) {
+                setCurrentTasks(tasksData.data)
+            }
+        }
+        getAllTasks();    
+    }, [])
+
     return(
         <div className="container">
             <h1>Mi lista de tareas</h1>
-            {misTareas.map(tarea => <Task description={tarea}/>)}
+            {currentTasks.map(tarea => <Task description={tarea}/>)}
         </div>
     )
 }

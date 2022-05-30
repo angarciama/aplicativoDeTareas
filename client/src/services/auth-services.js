@@ -17,7 +17,7 @@ const login = async (email, password) => {
 }
 
 const getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem('user'));
+    return localStorage.getItem('user');
 }
 
 const logout = () => {
