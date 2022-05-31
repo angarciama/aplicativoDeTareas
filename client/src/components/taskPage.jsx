@@ -20,7 +20,7 @@ function TaskPage(){
     return(
         <div className="container">
             <h1>Mi lista de tareas</h1>
-            {currentTasks.map(tarea => <Task description={tarea}/>)}
+            {currentTasks.map(tarea => <Task description={tarea.description}/>)}
         </div>
     )
 }

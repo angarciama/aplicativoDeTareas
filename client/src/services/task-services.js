@@ -11,8 +11,18 @@ const getAllTasks = () => {
     });
 }
 
+const createTasks = (description) => {
+    return axios.get(API_URL, {
+        headers: {
+            "Authorization": "Bearer " + token.replaceAll('"', '')
+        }
+    }, {description});
+}
+
+
 const taskServices = {
-    getAllTasks
+    getAllTasks,
+    createTasks
 }
 
 export default taskServices;
